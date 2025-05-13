@@ -1,0 +1,254 @@
+.title-Logo{
+display: flex;
+margin: 0 auto;
+padding-top: 20px;
+}
+
+h1{
+    text-align: center;
+    font-size: 1em;
+}
+
+.link-box {
+  display: inline-block;  
+    margin: 0 auto;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* グラデーション背景 */
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px; /* 角を丸く */
+    text-align: center;
+    text-decoration: none; /* 下線を消す */
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影で立体感 */
+    transition: all 0.3s ease; /* 滑らかな変化 */
+    position: relative;
+    overflow: hidden;
+}
+
+.link-box:hover {
+    background: linear-gradient(to right, #feb47b, #ff7e5f); /* ホバー時にグラデーション反転 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 影を強く */
+    transform: translateY(-2px); /* 浮き上がるエフェクト */
+}
+
+.link-box:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* クリック時に影を浅く */
+    transform: translateY(1px); /* 押し込まれるエフェクト */
+}
+
+.link-box::before {
+    content: '\1F517'; /* リンクアイコン（🔗） */
+    font-size: 1.5em;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+h2 {
+    font-size: 2.5em; /* 見出しのサイズ */
+    color: #ffffff; /* テキストを白色に */
+    text-align: center; /* 中央揃え */
+    padding: 20px; /* 内側の余白 */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* 宇宙らしいグラデーション背景 */
+    border-radius: 10px; /* 角を丸く */
+    position: relative; /* 疑似要素を配置するための設定 */
+    overflow: hidden; /* はみ出しを防ぐ */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 文字に光沢を追加 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* 周囲に影を追加 */
+    margin-bottom: 10px; /* 下の余白 */
+}
+h2 a{
+    color: initial;
+}
+
+h2::before {
+    content: ''; /* 疑似要素で背景に星を追加 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" /></filter></defs><rect width="100%" height="100%" filter="url(#f)" opacity="0.3" fill="white" /></svg>') repeat; /* SVGで星空風のノイズを生成 */
+    opacity: 0.1; /* 星の透明度を調整 */
+    z-index: 0; /* テキストより背面に配置 */
+}
+
+h2 span {
+    position: relative; /* テキストを前面に */
+    z-index: 1; /* 星の背景より手前に */
+}
+
+h2::after {
+    content: ''; /* 疑似要素で光のアニメーションを追加 */
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%); /* 光の輪を表現 */
+    animation: rotate 10s linear infinite; /* 回転アニメーション */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg); /* 回転開始 */
+    }
+    100% {
+        transform: rotate(360deg); /* 回転終了 */
+    }
+}
+
+@layer support.demo {
+  html, body {
+    block-size: 100%;
+  }
+  
+  body {
+    display: grid;
+    place-content: start center;
+    margin: 0;
+    padding: 10vmin;
+  }
+  
+  .scroll-layout {
+    display: grid;
+    grid-template-areas: 
+      "left scroll right"
+      ". markers .";
+    
+    grid-template-areas: 
+      "scroll scroll scroll"
+      "left markers right";
+    
+    grid-template-columns: auto 1fr auto;
+
+    .carousel {
+      grid-area: scroll;
+    }
+  }
+  
+  .carousel {
+    max-inline-size: 80cqi;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+  }
+
+  .content {
+    display: grid;
+    grid: 50vmin / auto-flow 50vmin;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+
+    > li {
+      list-style-type: none;
+      border: 3px solid #888;
+    }
+  }
+}
+.carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  
+  > li {
+    scroll-snap-align: center;
+  }
+}
+
+/* scroll button */
+.carousel {
+  &::scroll-button(*) {
+    inline-size: 48px;
+    aspect-ratio: 1;
+    border-radius: 1e3px;
+    border: 2px solid #999;
+    margin: 5px;
+  }
+  
+  &::scroll-button(*):focus-visible {
+    outline-offset: 5px;
+  }
+  
+  &::scroll-button(*):not(:disabled):is(:hover, :active) {
+    background-color: Canvas;
+  }
+  
+  &::scroll-button(*):not(:disabled):active {
+    scale: 90%;
+  }
+  
+  &::scroll-button(left) {
+    content: "⬅" / "Scroll Left";
+    grid-area: left;
+  }
+  
+  &::scroll-button(right) {
+    content: "⮕" / "Scroll Right";
+    grid-area: right;
+  }
+}
+
+/* scroll markers */
+.carousel {
+  scroll-marker-group: after;
+  &::scroll-marker-group {
+    grid-area: markers;
+    display: grid;
+    place-content: safe center;
+    grid: 15px / auto-flow 15px;
+    gap: 15px;
+    padding: 15px;
+    scroll-padding: 15px;
+    overflow: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  & > .content > li {
+    &::scroll-marker {
+      content: " ";
+      border: 1px solid #bbb;
+      border-radius: 50%;
+      outline-offset: 4px;
+      -webkit-tap-highlight-color: transparent;
+      scroll-snap-align: center;
+    }
+    
+    &::scroll-marker:is(:hover, :focus-visible) {
+      border-color: LinkText;
+    }
+    
+    &::scroll-marker:target-current {
+      background: LinkText;
+      border-color: LinkText;
+    }
+  }
+}
+
+/* リンクカード */
+a.link-card {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow .15s;
+  margin-bottom: 40px;
+}
+a.link-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+
+.link-card img { width: 96px; height: 96px; object-fit: cover; border-radius: 4px; }
+
+.link-card .meta h3 { font-size: 16px; margin: 0 0 4px; }
+.link-card .meta p  { font-size: 12px; color: #555; margin: 0; }
+
+.carousel-image{
+    height: 100%;
+}
