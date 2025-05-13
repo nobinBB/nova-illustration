@@ -2,7 +2,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-import LinkCard from "../components/linkCard";
+// import LinkCard from "../components/linkCard";
 import fs from "fs";
 import path from "path";
 
@@ -26,13 +26,13 @@ export default function Home({ images = [] }) {
           content="checkPointのnovaシリーズで製作したイラスト"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
 
       <header>
         <a href="/">
           <Image
-            src="/title.png"
+            src="title.png"
             alt="nova illustration"
             width={500}
             height={200}
@@ -58,7 +58,7 @@ export default function Home({ images = [] }) {
                       {/* next/image に置き換えても OK */}
                       <img
                         className="carousel-image"
-                        src={`/img/nova3dcg/${name}`}
+                        src={`img/nova3dcg/${name}`}
                         alt={name}
                       />
                     </li>
@@ -80,7 +80,7 @@ export default function Home({ images = [] }) {
                       {/* next/image に置き換えても OK */}
                       <img
                         className="carousel-image"
-                        src={`/img/novaAnime/${name}`}
+                        src={`img/novaAnime/${name}`}
                         alt={name}
                       />
                     </li>
@@ -100,7 +100,7 @@ export default function Home({ images = [] }) {
                       {/* next/image に置き換えても OK */}
                       <img
                         className="carousel-image"
-                        src={`/img/novaFlat/${name}`}
+                        src={`img/novaFlat/${name}`}
                         alt={name}
                       />
                     </li>
@@ -121,7 +121,7 @@ export default function Home({ images = [] }) {
                       {/* next/image に置き換えても OK */}
                       <img
                         className="carousel-image"
-                        src={`/img/novaOrange/${name}`}
+                        src={`img/novaOrange/${name}`}
                         alt={name}
                       />
                     </li>
@@ -141,7 +141,7 @@ export default function Home({ images = [] }) {
                       {/* next/image に置き換えても OK */}
                       <img
                         className="carousel-image"
-                        src={`/img/novaUnreal/${name}`}
+                        src={`img/novaUnreal/${name}`}
                         alt={name}
                       />
                     </li>
